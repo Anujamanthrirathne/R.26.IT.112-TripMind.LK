@@ -9,7 +9,7 @@ import {
   Users,
 } from "lucide-react";
 import tafPdf from "../Documents/taf.pdf";
-import individualPdf from "../Documents/individual.pdf";
+import individualPdf from "../Documents/Individual.pdf";
 import "./documents.css";
 
 // A document with a file is "Completed". A document with file: null is "Pending".
