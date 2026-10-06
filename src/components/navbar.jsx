@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { ArrowRight, Map, Menu, X } from "lucide-react";
-import "./Navbar.css";
+import "./navbar.css";
 
 const links = [
   { label: "Home", to: "/" },
