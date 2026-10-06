@@ -7,8 +7,7 @@ import Domain from "./pages/domain";
 
 import Footer from "./components/Footer";
 
-import Milestones from "./components/Milestones";
-import Documents from "./components/doucments";
+import Milestones from "./components/Milestones";import Documents from "./components/doucments";
 
 import Presentations from "./pages/presentation";
 import About from "./pages/about";
