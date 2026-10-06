@@ -1,0 +1,158 @@
+.footer {
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+}
+
+/* thin strip in the Sri Lanka flag colours */
+.footer-flag {
+  display: flex;
+  height: 4px;
+}
+
+.footer-flag span { flex: 1; }
+.footer-flag span:nth-child(1) { background: #3f8a2a; }
+.footer-flag span:nth-child(2) { background: #e8803a; }
+.footer-flag span:nth-child(3) { background: #f2b134; }
+.footer-flag span:nth-child(4) { background: #8f2440; flex: 3; }
+
+/* ---------- main row ---------- */
+.footer-main {
+  max-width: 1240px;
+  margin: auto;
+  padding: 36px 8% 28px;
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  text-decoration: none;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.footer-logo b {
+  font-weight: 700;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-logo-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: #04101f;
+  background: var(--grad);
+}
+
+.footer-brand p {
+  max-width: 380px;
+  margin: 12px 0 0;
+  color: var(--text-soft);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+/* ---------- link columns ---------- */
+.footer-col h4 {
+  margin: 0 0 12px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.footer-col ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 2px;
+}
+
+.footer-col a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 0;
+  color: var(--text-soft);
+  text-decoration: none;
+  font-size: 14.5px;
+  transition: color 0.2s ease;
+}
+
+.footer-col a:hover {
+  color: var(--cyan);
+}
+
+/* ---------- bottom bar ---------- */
+.footer-bottom {
+  max-width: 1240px;
+  margin: auto;
+  padding: 14px 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: var(--text-faint);
+  font-size: 13.5px;
+}
+
+.footer-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text-soft);
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.footer-top:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 800px) {
+  .footer-main {
+    padding: 30px 6% 22px;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px 24px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-bottom {
+    padding: 14px 6%;
+  }
+}
+
+@media (max-width: 520px) {
+  .footer-bottom p {
+    font-size: 12.5px;
+  }
+}
