@@ -1,5 +1,5 @@
 import { ArrowUpRight, Building2, GraduationCap, Mail, Users } from "lucide-react";
-import "./About.css";
+import "./about.css";
 
 // Edit names, titles and emails here.
 const supervisors = [

@@ -14,7 +14,7 @@ import {
   Smartphone,
   Workflow,
 } from "lucide-react";
-import "./Domain.css";
+import "./domain.css";
 
 const tabs = [
   { id: "literature", label: "Literature Survey" },
