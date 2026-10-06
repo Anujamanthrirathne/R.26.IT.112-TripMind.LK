@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import tafPdf from "../Documents/taf.pdf";
 import individualPdf from "../Documents/individual.pdf";
-import "./Documents.css";
+import "./documents.css";
 
 // A document with a file is "Completed". A document with file: null is "Pending".
 // To add another PDF later: put it in src/Documents, import it above,

@@ -8,7 +8,7 @@ import {
   ShieldCheck,
   Users,
 } from "lucide-react";
-import "./Home.css";
+import "./home.css";
 import WavingFlag from "../components/WavingFlag";
 import slFlag from "../assets/sl.jpg";
 
