@@ -13,6 +13,7 @@ import {
   Server,
   Smartphone,
   Workflow,
+  Radio,
 } from "lucide-react";
 import "./domain.css";
 
@@ -27,8 +28,8 @@ const tabs = [
 
 const literature = [
   ["C1", "Conversational Travel Planning", "Transformer models such as BERT can extract intents and constraints from a request, and NSGA-II produces a set of trade-off packages. But itineraries are usually fixed once generated, and few systems adapt the plan during the trip or support voice interaction."],
-  ["C2", "Emotion Recognition in Tourism", "Emotion is a key driver of tourist satisfaction. Existing work relies on fixed cameras or wearables, is mostly tested in laboratories, and rarely produces actionable recommendations. No reviewed system runs on the visitor's own phone."],
-  ["C3", "Driver and Vehicle Safety", "Drowsiness detection from eye aspect ratio and sensor-based driving behaviour are well studied. Fleet products need installed hardware and report after the trip. Few combine driver state, vehicle condition and route risk into one proactive alert."],
+  ["C2", "Emotion Recognition in Tourism", "Emotion is a key driver of tourist satisfaction. Existing work relies on fixed cameras or wearables, is mostly tested in laboratories, and rarely produces actionable recommendations. Mobile-first multi-modal recognition linked to destination zones remains limited."],
+  ["C3", "Smart Driver and Vehicle Safety", "Drowsiness detection from eye aspect ratio and sensor-based driving behaviour are well studied. Fleet products need installed hardware and report after the trip. Few combine driver state, vehicle condition and route risk into one proactive alert."],
   ["C4", "Tourism Flow and Crowd Prediction", "LSTM forecasting and social-force crowd models explain and predict congestion. Most work covers a single site, needs costly counting infrastructure, and stops at prediction without sending recommendations to tourists."],
   ["All", "Integrated Smart Tourism Platforms", "Smart tourism destinations are described as shared data ecosystems, but deployed systems are mostly single-purpose apps. Data stays in silos, and privacy and governance of shared data remain under-specified."],
 ];
@@ -36,8 +37,8 @@ const literature = [
 const gaps = [
   ["Static, single-objective planning", "C1", "Planners generate an itinerary once and rarely trade off cost, time, interest match and comfort. They do not handle several intents in one request or support voice-first interaction."],
   ["No real-time adaptation", "C1 · C2 · C4", "Itineraries do not respond to weather, closures, crowding or the emotional state of travellers, so a good morning plan can become a poor afternoon one."],
-  ["No mobile emotion recognition", "C2", "Every reviewed system uses fixed cameras or wearables. None runs on the visitor's smartphone, maps emotion to zones, models change over a visit, or detects anomalies early."],
-  ["Fragmented, reactive transport safety", "C3", "Driver state, driving behaviour and route risk are treated separately, usually need installed hardware, and are not linked to the tourist journey."],
+  ["Limited mobile emotion recognition & zone mapping", "C2", "Existing systems use fixed cameras or wearables rather than mobile apps that map facial expressions (RAF-DB) to GPS zones, track emotional trajectories, and detect anomalies."],
+  ["Fragmented, reactive transport safety", "C3", "Driver state (fatigue/yawns) and forward collision risk (TTC) are treated separately in commercial systems, lacking a unified edge-computed Composite Safety Index (CSI) with tiered alerts and strict privacy."],
   ["Forecasting without redistribution", "C4", "Crowd forecasts are seldom turned into recommendations that reach tourists while they plan or visit, and they ignore emotional and planning signals."],
   ["No closed-loop architecture", "All", "Planning, experience sensing, transport safety and flow management are built as separate silos, so no component can use another's output."],
   ["Privacy and governance of sensitive data", "All", "Emotion, location and driver-state data are sensitive. Few designs apply consent, pseudonymous identity, on-device processing and role-based access consistently under Sri Lanka's Personal Data Protection Act, No. 9 of 2022."],
@@ -45,42 +46,41 @@ const gaps = [
 
 const subProblems = [
   ["Planning", "C1", "How can free-text and spoken requests with several intents become optimised, personalised packages that adapt in real time?"],
-  ["Experience", "C2", "How can emotion recognition run on a standard smartphone, link to zones of a heritage site, and turn into recommendations?"],
-  ["Safety", "C3", "How can driver state, driving behaviour, vehicle condition and route risk be combined into timely, proactive alerts?"],
+  ["Experience", "C2", "How can custom CNN emotion recognition run on a standard smartphone, link to GPS zones of a heritage site, and generate actionable recommendations"],
+  ["Safety", "C3", "How can driver fatigue (EAR/yawns) and forward collision risk (TTC) be combined via edge IoT hardware into a Composite Safety Index with tiered alerts"],
   ["Flow", "C4", "How can crowding across a network of attractions be forecast and redistributed in time to matter?"],
   ["Integration", "All", "How can the four components share a data contract, identity, consent and spatial model while staying independently deployable and private?"],
 ];
 
 const objectives = [
   ["Build an AI conversational travel analyser (C1)", "Extract destinations, dates, budget, group composition and interests from text and voice requests, generate ranked packages with an NSGA-II optimiser, and adapt the itinerary live through a proactive voice agent."],
-  ["Develop on-device emotion recognition (C2)", "Classify seven emotions with a MobileNetV2 model on the visitor's phone, fuse the result with zone, crowd and time context, track emotional trajectories with an LSTM, and give managers a zone heatmap dashboard."],
-  ["Create a proactive driver and vehicle safety system (C3)", "Detect drowsiness and distraction with the phone camera, analyse driving behaviour and vehicle condition, model route risk, and issue prioritised alerts with trip safety scores."],
+  ["Develop on-device emotion recognition (C2)", "Classify five emotions (angry, happy, neutral, sad, surprise) using a Custom CNN trained on RAF-DB with TensorFlow Lite, integrate GPS zones and LSTM trajectories, and provide a manager dashboard."],
+  ["Create a proactive driver and vehicle safety system (C3)", "Deploy an IoT edge unit using an ESP32-CAM (MobileNetV2 eye/yawn models) and HC-SR04 sensor, communicating via ESP-NOW to an ESP32 hub that computes a Composite Safety Index (CSI) from EAR and TTC."],
   ["Optimise tourism flow and crowding (C4)", "Forecast crowding across attractions from historical, calendar, weather and live signals, and recommend alternative sites, times and routes through an operator dashboard."],
   ["Integrate the four components privately and securely", "Define a versioned data contract and event interfaces, apply consistent consent, pseudonymous identity and access control, and demonstrate at least three cross-component scenarios in a pilot."],
 ];
 
 const methodology = [
   ["Research Approach and Requirements", "The work follows design science research. Requirements were gathered for tourists, drivers and destination managers, and the four components were assigned to separate team members around a shared integration layer."],
-  ["Architecture and Integration Design", "A layered architecture connects the mobile app and web dashboards to the four components through a shared spatial model, versioned data contracts and an event bus, with common identity and consent handling."],
-  ["Component Development", "C1 combines a transformer intent extractor, NSGA-II and an adaptive voice engine. C2 uses a quantised MobileNetV2 with late fusion and an LSTM. C3 uses face landmarks, motion sensors and a route-risk model. C4 uses time-series forecasting and an optimisation engine."],
-  ["Privacy, Security and Ethics by Design", "Emotion is processed on the device, so no images are stored or transmitted. Consent, pseudonymous identity and role-based access apply across every component, and outputs are advisory, not diagnostic."],
-  ["Implementation and Testing", "Services are built with FastAPI, PostgreSQL with PostGIS and an event broker, packaged in Docker. Testing covers each component, cross-component scenarios, and device and load tests."],
-  ["Evaluation and Pilot", "Component benchmarking, ablation studies, scenario tests and a usability assessment lead into a pilot at a Sri Lankan heritage site with consenting volunteers."],
+  ["Architecture and Integration Design", "A layered architecture connects mobile apps and IoT hardware to the four components through a shared spatial model, versioned data contracts and an event bus, with common identity and consent handling."],
+  ["Component Development", "C1 uses transformers and NSGA-II. C2 uses a mobile Custom CNN with TensorFlow Lite, late fusion, and LSTM trajectories. C3 uses an ESP32-CAM, HC-SR04, ESP-NOW, and an ESP32 main hub for CSI calculation. C4 uses forecasting and optimisation."],
+  ["Privacy, Security and Ethics by Design", "Facial images and driver video never leave the respective local devices (smartphone/ESP32-CAM). Consent, pseudonymous identity and role-based access apply across every component."],
+  ["Implementation and Testing", "Services are built with FastAPI, PostgreSQL with PostGIS and message brokers, packaged in Docker. Testing covers component benchmarks, unit tests, and cross-component integration."],
+  ["Evaluation and Pilot", "Component benchmarking, ablation studies, scenario tests and usability assessments lead into pilot deployments at Sri Lankan heritage and transport sites."],
 ];
 
 const technologies = [
-  [Smartphone, "React Native", "Tourist and driver mobile app", "One code base for Android and iOS"],
-  [Brain, "TensorFlow and TensorFlow Lite", "Model training and on-device inference", "Mature mobile runtime that works offline"],
-  [ScanFace, "MobileNetV2 and MediaPipe Face Mesh", "Emotion classification and face landmarks", "Built for mobile processors, real-time"],
-  [Eye, "YOLOv8 nano", "Crowd density estimation", "Lightweight real-time person detection"],
-  [MessageSquare, "Transformer language models", "Intent extraction and dialogue", "Strong multi-intent understanding"],
-  [Network, "NSGA-II", "Multi-objective package optimisation", "Produces Pareto-optimal alternatives"],
-  [Server, "Python and FastAPI", "Back-end REST and model services", "Concise, asynchronous, suited to ML"],
+  [Smartphone, "React Native", "Tourist and driver mobile apps", "One code base for Android and iOS dashboards"],
+  [Brain, "TensorFlow and TensorFlow Lite", "Mobile emotion model inference (C2)", "Efficient on-device execution for C2[cite: 72]"],
+  [ScanFace, "Custom CNN & RAF-DB", "Facial emotion classification (C2)", "Classifies 5 universal emotions on mobile[cite: 72]"],
+  [Cpu, "ESP32-CAM & MobileNetV2", "Edge driver monitoring (C3)", "Local eye-state and yawn classification[cite: 2]"],
+  [Radio, "ESP-NOW & HC-SR04", "IoT sensor communication & distance (C3)", "Low-latency wireless link and collision sensing[cite: 2]"],
+  [Server, "Python and FastAPI", "Back-end REST and model services", "Concise, asynchronous, suited to ML and IoT sync"],
   [Database, "PostgreSQL with PostGIS", "Sessions, records and spatial zones", "Spatial queries and polygon zones"],
-  [Workflow, "Redis Streams or RabbitMQ", "Event bus between components", "Decouples components, supports retries"],
-  [Map, "React and Leaflet", "Manager and operator dashboards", "Interactive maps and heatmaps"],
-  [Cloud, "Docker and a cloud provider", "Packaging, hosting and GPU retraining", "Each service scales independently"],
-  [GitBranch, "Git and a shared task board", "Version control and planning", "Traceable progress and team coordination"],
+  [Workflow, "RabbitMQ / Firebase", "Event bus and real-time sync", "Decouples components and pushes alerts (FCM)[cite: 2]"],
+  [Map, "React and Leaflet / Mapbox", "Manager and operator dashboards", "Interactive maps, heatmaps and live tracking[cite: 2, 72]"],
+  [Cloud, "Docker and AWS", "Packaging, hosting and GPU scaling", "Each microservice scales independently"],
+  [GitBranch, "Git and shared task board", "Version control and planning", "Traceable progress and team coordination"],
 ];
 
 function Heading({ label, title, text }) {
@@ -98,7 +98,6 @@ function Domain() {
   const panelRef = useRef(null);
   const firstRender = useRef(true);
 
-  // after a tab is clicked, glide down so the content is in view
   useEffect(() => {
     if (firstRender.current) {
       firstRender.current = false;
@@ -161,7 +160,7 @@ function Domain() {
             <Heading
               label="Research Gap"
               title="What Is Missing"
-              text="No reviewed study combines conversational planning, on-phone emotion recognition, proactive driver safety and crowd-flow optimisation in one privacy-aware platform. Seven specific gaps remain."
+              text="No reviewed study combines conversational planning, mobile emotion recognition, IoT edge driver safety and crowd-flow optimisation in one privacy-aware platform."
             />
             <div className="d-grid d-grid-2">
               {gaps.map(([title, tag, text], i) => (
@@ -183,7 +182,7 @@ function Domain() {
               text="Understanding the core challenge that TripMind LK addresses."
             />
             <blockquote className="d-quote">
-              “How can an integrated, mobile-first AI framework support tourists
+              “How can an integrated, mobile-first and IoT-backed AI framework support tourists
               in Sri Lanka across planning, destination experience, road
               transport and crowd flow, with components that share information,
               adapt to live conditions and protect privacy?”
