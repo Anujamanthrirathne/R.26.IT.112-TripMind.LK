@@ -15,8 +15,7 @@ import individualPdf from "../Documents/Individual.pdf";
 import checklist1Pdf from "../Documents/checklist1.pdf";
 import checklist2Pdf from "../Documents/checklist2.pdf";
 
-import intelligentPdf from "../Documents/inteligent.pdf";
-import emotionPdf from "../Documents/emotion.pdf";
+import intelligentPdf from "../Documents/Inteligent.pdf";import emotionPdf from "../Documents/emotion.pdf";
 import smartDriverPdf from "../Documents/smart Driver.pdf";
 
 import crowdPdf from "../Documents/crowd.pdf";
