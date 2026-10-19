@@ -6,13 +6,17 @@ import {
   Presentation,
   Trophy,
 } from "lucide-react";
+
 import startPdf from "../Documents/start.pdf";
 import pp1Pdf from "../Documents/pp1.pdf";
 import pp2Pdf from "../Documents/PP2 Presentation.pdf";
 import "./Presentations.css";
 
+// Google Drive link for the final presentation
+const finalPresentationUrl =
+  "https://drive.google.com/file/d/1f81QA8G-uXUBaXr83omz2wNBFOiDCr3m/view?usp=sharing";
+
 // status is "completed" or "upcoming".
-// A card with file: null shows "Not Available" on the button.
 
 const presentations = [
   {
@@ -43,9 +47,9 @@ const presentations = [
     icon: Trophy,
     title: "Final Presentation",
     text: "Final comprehensive presentation covering the complete TripMind LK system, research contributions, evaluation, and future directions.",
-    status: "upcoming",
-    file: null,
-    filename: "final.pdf",
+    status: "completed",
+    file: finalPresentationUrl,
+    external: true,
   },
 ];
 
@@ -56,7 +60,9 @@ function Presentations() {
         <span className="pres-kicker">
           <Presentation size={15} /> Project Presentations
         </span>
+
         <h1>Presentations</h1>
+
         <p>
           Slides from every assessment of the TripMind LK research project.
           Download a deck once it is available.
@@ -68,12 +74,17 @@ function Presentations() {
           {presentations.map((p, i) => {
             const Icon = p.icon;
             const ready = Boolean(p.file);
+
             return (
-              <article className={`pres-card accent-${i % 4}`} key={p.title}>
+              <article
+                className={`pres-card accent-${i % 4}`}
+                key={p.title}
+              >
                 <div className="pres-top">
                   <span className="pres-icon">
                     <Icon size={26} />
                   </span>
+
                   <span className={`pres-status ${p.status}`}>
                     {p.status === "completed" ? "Completed" : "Upcoming"}
                   </span>
@@ -83,8 +94,15 @@ function Presentations() {
                 <p>{p.text}</p>
 
                 {ready ? (
-                  <a className="pres-btn" href={p.file} download={p.filename}>
-                    <Download size={17} /> Download Slides
+                  <a
+                    className="pres-btn"
+                    href={p.file}
+                    target={p.external ? "_blank" : undefined}
+                    rel={p.external ? "noopener noreferrer" : undefined}
+                    download={p.external ? undefined : p.filename}
+                  >
+                    <Download size={17} />
+                    {p.external ? "View Final Presentation" : "Download Slides"}
                   </a>
                 ) : (
                   <span className="pres-btn disabled" aria-disabled="true">

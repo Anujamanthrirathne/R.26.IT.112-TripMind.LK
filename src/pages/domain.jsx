@@ -27,10 +27,10 @@ const tabs = [
 ];
 
 const literature = [
-  ["C1", "Conversational Travel Planning", "Transformer models such as BERT can extract intents and constraints from a request, and NSGA-II produces a set of trade-off packages. But itineraries are usually fixed once generated, and few systems adapt the plan during the trip or support voice interaction."],
-  ["C2", "Emotion Recognition in Tourism", "Emotion is a key driver of tourist satisfaction. Existing work relies on fixed cameras or wearables, is mostly tested in laboratories, and rarely produces actionable recommendations. Mobile-first multi-modal recognition linked to destination zones remains limited."],
-  ["C3", "Smart Driver and Vehicle Safety", "Drowsiness detection from eye aspect ratio and sensor-based driving behaviour are well studied. Fleet products need installed hardware and report after the trip. Few combine driver state, vehicle condition and route risk into one proactive alert."],
-  ["C4", "Tourism Flow and Crowd Prediction", "LSTM forecasting and social-force crowd models explain and predict congestion. Most work covers a single site, needs costly counting infrastructure, and stops at prediction without sending recommendations to tourists."],
+  ["C1 - Senevirathne T.M.N.D.L", "Conversational Travel Planning", "Transformer models such as BERT can extract intents and constraints from a request, and NSGA-II produces a set of trade-off packages. But itineraries are usually fixed once generated, and few systems adapt the plan during the trip or support voice interaction."],
+  ["C2 - Kaweeshwara M.D.O", "Emotion Recognition in Tourism", "Emotion is a key driver of tourist satisfaction. Existing work relies on fixed cameras or wearables, is mostly tested in laboratories, and rarely produces actionable recommendations. Mobile-first multi-modal recognition linked to destination zones remains limited."],
+  ["C3 - Rupasinghe M.L.K.S", "Smart Driver and Vehicle Safety", "Drowsiness detection from eye aspect ratio and sensor-based driving behaviour are well studied. Fleet products need installed hardware and report after the trip. Few combine driver state, vehicle condition and route risk into one proactive alert."],
+  ["C4 - Manthrirathne M.A.A.C", "Tourism Flow and Crowd Prediction", "LSTM forecasting and social-force crowd models explain and predict congestion. Most work covers a single site, needs costly counting infrastructure, and stops at prediction without sending recommendations to tourists."],
   ["All", "Integrated Smart Tourism Platforms", "Smart tourism destinations are described as shared data ecosystems, but deployed systems are mostly single-purpose apps. Data stays in silos, and privacy and governance of shared data remain under-specified."],
 ];
 

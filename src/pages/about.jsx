@@ -36,7 +36,7 @@ const members = [
     name: "Rupasinghe M.L.K.S",
     id: "IT22176974",
     focus: "Smart driver and vehicle safety",
-    text: "Develops driver-state monitoring, driving behaviour and vehicle condition analytics, and the route-risk model that produces proactive safety alerts.",
+    text: "Develops driver-state monitoring, driving behaviour , and the route-risk model that produces proactive safety alerts.",
   },
   {
     name: "Manthrirathna M.A.A.C",
