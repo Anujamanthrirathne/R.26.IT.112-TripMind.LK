@@ -15,8 +15,8 @@ import individualPdf from "../Documents/Individual.pdf";
 import checklist1Pdf from "../Documents/checklist1.pdf";
 import checklist2Pdf from "../Documents/checklist2.pdf";
 
-import intelligentPdf from "../Documents/Inteligent.pdf";import emotionPdf from "../Documents/emotion.pdf";
-import smartDriverPdf from "../Documents/smart Driver.pdf";
+import IntelligentPdf from "../Documents/Inteligent.pdf";import emotionPdf from "../Documents/emotion.pdf";
+import smartDriverPdf from "../Documents/SmartDriver.pdf";
 
 import crowdPdf from "../Documents/crowd.pdf";
 import groupPdf from "../Documents/group.pdf";
@@ -85,8 +85,8 @@ const groups = [
             name: "Individual Report — Senevirathne T.M.N.D.L (IT22082442) · C1",
             meta: "PDF",
             type: "PDF",
-            file: intelligentPdf,
-            filename: "inteligent.pdf",
+            file: IntelligentPdf,
+            filename: "Inteligent.pdf",
           },
           {
             name: "Individual Report — Kaweeshwara M.D.O (IT22216014) · C2",
